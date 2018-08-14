@@ -5,14 +5,15 @@ SRCDIR = src
 OBJDIR = obj
 EMUEXE = nes
 EMUOPT =
+LIB = $(SRCDIR)/familib/runtime.lib
 CC = cc65
 CA = ca65
 LD = ld65
 CFLAGS = -Oi --add-source
 
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
-CRT0 = $(call rwildcard, $(SRCDIR), */$(BOARD).inc)
-CFG = $(call rwildcard, $(SRCDIR), */$(BOARD).cfg)
+CRT0 = $(strip $(call rwildcard, $(SRCDIR), */$(BOARD).inc))
+CFG = $(CRT0:.inc=.cfg)
 CSOURCES = $(call rwildcard, $(SRCDIR), *.c)
 SSOURCES = $(call rwildcard, $(SRCDIR), *.s)
 DEPS := $(CSOURCES:.c=.d)
@@ -31,7 +32,9 @@ ifneq ($(MAKECMDGOALS),clean)
 endif
 
 $(ROMNAME): $(CFG) $(CRT0) $(SSOURCES) $(OBJS) 
-	$(LD) -C $(CFG) -o $@ $(OBJS) nes.lib
+	$(LD) -C $(CFG) -m $(@:.nes=.m) -o $@ $(OBJS) $(LIB)
+
+all: clean play
 
 play: $(ROMNAME)
 	$(EMUEXE) $(EMUOPT) $(ROMNAME)
@@ -48,8 +51,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.s | $$(@D)/.
 $(OBJDIR)/%.o: $(SRCDIR)/%.inc | $$(@D)/.
 	$(CA) $< -o $@
 
-$(OBJDIR)/%.s: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $< --create-dep $(@:.s=.d) -o $@
+$(OBJDIR)/%.s: $(SRCDIR)/%.c | $$(@D)/.
+	$(CC) $(CFLAGS) -o $@ --create-dep $(@:.s=.d) $<
 
 .PRECIOUS: $(OBJDIR)/. $(OBJDIR)%/.
 
