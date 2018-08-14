@@ -1,0 +1,6 @@
+#include "type.h"
+#include "cpu/cpu.h"
+#include "io/ppu/ppu.h"
+#include "io/oam/oam.h"
+#include "io/joy/joy.h"
+#include "io/ft2/ft2.h"
