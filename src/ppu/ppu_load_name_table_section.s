@@ -44,7 +44,7 @@
 @loop0:
 	clc 
 	lda ppuptr1+0 
-	adc #SCREEN_COLS 
+	adc pputmp3	 
 	sta ppuptr1+0 
 	bcc @skip
 	inc ppuptr1+1 
