@@ -5,7 +5,7 @@
 ft2temp:		.res 3
 
 	.bss 
-	.align $100
+	.align $100, 0
 
 FT_TEMP			= ft2temp	;3 bytes in zeropage used by the library as a scratchpad
 FT_BASE_ADR		= *			;page in the RAM used for FT2 variables, should be $xx00
