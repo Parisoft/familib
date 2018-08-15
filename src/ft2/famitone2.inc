@@ -35,7 +35,7 @@ FT_TEMP_PTR			= FT_TEMP		;word
 FT_TEMP_PTR_L		= FT_TEMP_PTR+0
 FT_TEMP_PTR_H		= FT_TEMP_PTR+1
 FT_TEMP_VAR1		= FT_TEMP+2
-
+FT_TEMP_SIZE        = 3
 
 ;envelope structure offsets, 5 bytes per envelope, grouped by variable type
 
@@ -148,6 +148,7 @@ FT_SFX_PTR_H		= FT_SFX_BASE_ADR+2
 FT_SFX_OFF			= FT_SFX_BASE_ADR+3
 FT_SFX_BUF			= FT_SFX_BASE_ADR+4	;11 bytes
 
+FT_BASE_SIZE 		= FT_SFX_BUF+11-FT_BASE_ADR
 
 ;aliases for sound effect channels to use in user calls
 

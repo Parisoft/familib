@@ -1,9 +1,10 @@
+#include <stddef.h>
 #include "../ppu/ppu.h"
 
-#define ft2_init(data)           \
-    __asm__("ldx #<(%v)", data); \
-    __asm__("ldy #>(%v)", data); \
-    __asm__("lda %v+4", ppu);    \
+#define ft2_init(data)                                  \
+    __asm__("ldx #<(%v)", data);                        \
+    __asm__("ldy #>(%v)", data);                        \
+    __asm__("lda %v+%b", ppu, offsetof(ppu_t, system)); \
     __asm__("jsr _FamiToneInit");
 
 #define ft2_init_ntsc(data)      \

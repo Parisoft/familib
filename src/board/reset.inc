@@ -5,7 +5,7 @@
 
 ; linker-generated symbols
 
-.import __STACK_START__, __STACK_SIZE__
+.import __STACK_START__, __STACK_SIZE__ 
 .include "zeropage.inc"
 
 ; definitions
@@ -40,6 +40,7 @@ APU_FRAME_CTR = $4017
 .define STACK_SIZE $100
 
 .segment "BSS"
+
 cstack: .res STACK_SIZE 
 
 .segment "STARTUP"
