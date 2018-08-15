@@ -1,5 +1,5 @@
-    .exportzp ppuprt2 
+    .exportzp ppuptr2 
 
     .zeropage
 
-ppuprt2:    .res 2
+ppuptr2:    .res 2
