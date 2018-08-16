@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "title.h": "c",
+        "familib.h": "c",
+        "joy.h": "c"
+    },
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreview": false
+}
