@@ -1,39 +1,35 @@
-#include <stddef.h>
-#include "../ppu/ppu.h"
+#include "../def/def.h"
 
-#define ft2_init(data)                                  \
-    __asm__("ldx #<(%v)", data);                        \
-    __asm__("ldy #>(%v)", data);                        \
-    __asm__("lda %v+%b", ppu, offsetof(ppu_t, system)); \
-    __asm__("jsr _FamiToneInit");
+// prepare a sound file fot further play
+// the system region is autodetected (ppu_detect_region() must be called prior this function)
+void __fastcall__ ft2_init(const u8_t *data);
 
-#define ft2_init_ntsc(data)      \
-    __asm__("ldx #<(%v)", data); \
-    __asm__("ldy #>(%v)", data); \
-    __asm__("lda #1");           \
-    __asm__("jsr _FamiToneInit");
+// prepare a sound file fot further play
+// the system region is NTSC
+void __fastcall__ ft2_init_ntsc(const u8_t *data);
 
-#define ft2_init_palm(data)      \
-    __asm__("ldx #<(%v)", data); \
-    __asm__("ldy #>(%v)", data); \
-    __asm__("lda #0");           \
-    __asm__("jsr _FamiToneInit");
+// prepare a sound file fot further play
+// the system region is PAL-M
+void __fastcall__ ft2_init_palm(const u8_t *data);
+
+// prepare a sfx file for further play
+void __fastcall__ ft2_init_sfx(const u8_t *data);
 
 // play a music in FamiTone format
-extern void __fastcall__ ft2_play_music(u8 song);
+void __fastcall__ ft2_play_music(u8_t song);
 
 // stop music
-extern void __fastcall__ ft2_stop_music(void);
+void __fastcall__ ft2_stop_music(void);
 
 // pause and unpause music
-extern void __fastcall__ ft2_pause_music(u8 pause);
+void __fastcall__ ft2_pause_music(u8_t pause);
 
 // play FamiTone sound effect on channel 0..3
-extern void __fastcall__ ft2_play_sfx(u8 sound, u8 channel);
+void __fastcall__ ft2_play_sfx(u8_t sound, u8_t channel);
 
 // play a DPCM sample, 1..63
-extern void __fastcall__ ft2_play_sample(u8 sample);
+void __fastcall__ ft2_play_sample(u8_t sample);
 
 // update the sound engine
 // must be called each frame
-extern void __fastcall__ ft2_update(void);
+void __fastcall__ ft2_update(void);

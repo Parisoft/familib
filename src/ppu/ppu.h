@@ -34,22 +34,22 @@
 #define SPRITE_FLIP (1 << 7)
 
 // PPUCTRL register
-#define PPUCTRL *((u8 *)0x2000)
+#define PPUCTRL *((u8_t *)0x2000)
 
 // PPUMASK register
-#define PPUMASK *((u8 *)0x2001)
+#define PPUMASK *((u8_t *)0x2001)
 
 // PPUSTATUS register
-#define PPUSTATUS *((u8 *)0x2002)
+#define PPUSTATUS *((u8_t *)0x2002)
 
 // PPUSCROLL register
-#define PPUSCROLL *((u8 *)0x2005)
+#define PPUSCROLL *((u8_t *)0x2005)
 
 // PPUADDR register
-#define PPUADDR *((u8 *)0x2006)
+#define PPUADDR *((u8_t *)0x2006)
 
 // PPUDATA register
-#define PPUDATA *((u8 *)0x2007)
+#define PPUDATA *((u8_t *)0x2007)
 
 extern ppu_t ppu;
 #pragma zpsym("ppu");
@@ -148,76 +148,76 @@ extern ppu_t ppu;
     PPUSCROLL = ppu.scroll.y;
 
 // detect the system region: NTSC or PAL
-extern void ppu_detect_system();
+void ppu_detect_system();
 
 // get current name table addr
-extern u16 ppu_curr_name_table();
+u16_t ppu_curr_name_table();
 
 // get next horizontal name table addr
-extern u16 ppu_next_name_table_h();
+u16_t ppu_next_name_table_h();
 
 // get next vertical name table addr
-extern u16 ppu_next_name_table_v();
+u16_t ppu_next_name_table_v();
 
 // set 16 bg palette colors
-extern void __fastcall__ ppu_load_bg_pal(const u8 *data);
+void __fastcall__ ppu_load_bg_pal(const u8_t *data);
 
 // set 4 bg palette colors at index
-extern void __fastcall__ ppu_load_bg_pal_at(u8 idx, const u8 *data);
+void __fastcall__ ppu_load_bg_pal_at(u8_t idx, const u8_t *data);
 
 // set 1 bg palette color
-extern void __fastcall__ ppu_load_bg_pal_color(u8 idx, u8 color);
+void __fastcall__ ppu_load_bg_pal_color(u8_t idx, u8_t color);
 
 // set 16 spr palette colors
-extern void __fastcall__ ppu_load_spr_pal(const u8 *data);
+void __fastcall__ ppu_load_spr_pal(const u8_t *data);
 
 // set 4 spr palette colors at index
-extern void __fastcall__ ppu_load_spr_pal_at(u8 idx, const u8 *data);
+void __fastcall__ ppu_load_spr_pal_at(u8_t idx, const u8_t *data);
 
 // set 1 spr palette color
-extern void __fastcall__ ppu_load_spr_pal_color(u8 idx, u8 color);
+void __fastcall__ ppu_load_spr_pal_color(u8_t idx, u8_t color);
 
 // set name table
 // nt is a name table addr
 // data is a 960 bytes table
-extern void __fastcall__ ppu_load_name_table(u16 nt, const u8 *data);
+void __fastcall__ ppu_load_name_table(u16_t nt, const u8_t *data);
 
 // set 1 name table tile
 // nt is a name table addr
-extern void __fastcall__ ppu_load_name_table_tile(u8 tile, u16 nt, u8 row, u8 col);
+void __fastcall__ ppu_load_name_table_tile(u8_t tile, u16_t nt, u8_t row, u8_t col);
 
 // set a name table row
 // nt is a name table addr
 // data is a 960 bytes table
-extern void __fastcall__ ppu_load_name_table_row(u16 nt, u8 row, const u8 *data);
+void __fastcall__ ppu_load_name_table_row(u16_t nt, u8_t row, const u8_t *data);
 
 // set a name table column
 // nt is a name table addr
 // data is 960 bytes table
-extern void __fastcall__ ppu_load_name_table_col(u16 nt, u8 col, const u8 *data);
+void __fastcall__ ppu_load_name_table_col(u16_t nt, u8_t col, const u8_t *data);
 
 // set a name table section
 // nt is a name table addr
 // row and col are the offset on screen
 // len0 and len1 are the lengths of the section
 // section is an arbitrary length 2D array of bytes
-extern void __fastcall__ ppu_load_name_table_section(u16 nt, u8 row, u8 col, u8 len0, u8 len1, const u8 *section);
+void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t row, u8_t col, u8_t len0, u8_t len1, const u8_t *section);
 
 // set attribute table
 // nt is a name table addr
 // data is 64 bytes table
-extern void __fastcall__ ppu_load_attr_table(u16 nt, const u8 *data);
+void __fastcall__ ppu_load_attr_table(u16_t nt, const u8_t *data);
 
 // set an attribute table row
 // nt is a name table addr
 // data is 65 bytes table
-extern void __fastcall__ ppu_load_attr_table_row(u16 nt, u8 row, const u8 *data);
+void __fastcall__ ppu_load_attr_table_row(u16_t nt, u8_t row, const u8_t *data);
 
 // set an attribute table col
 // nt is a name table addr
 // data is 65 bytes table
-extern void __fastcall__ ppu_load_attr_table_col(u16 nt, u8 col, const u8 *data);
+void __fastcall__ ppu_load_attr_table_col(u16_t nt, u8_t col, const u8_t *data);
 
 // set an attribute cell
 // nt is a name table addr
-extern void __fastcall__ ppu_load_attr_table_cell(u8 data, u16 nt, u8 row, u8 col);
+void __fastcall__ ppu_load_attr_table_cell(u8_t data, u16_t nt, u8_t row, u8_t col);
