@@ -5,7 +5,7 @@ OAMADDR = $2003
 OAMDATA = $2004
 OAMDMA  = $4014
 
-;extern void __fastcall__ oam_hide_sprites_from(u8 num);
+; void __fastcall__ oam_hide_sprites_from(u8 num);
 .proc _oam_hide_sprites_from 
     asl A 
     asl A 

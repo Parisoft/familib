@@ -22,6 +22,11 @@ void __fastcall__ oam_buffer_spr(u8_t x, u8_t y, u8_t spr, u8_t opt, u8_t num);
 // the value $80 mark the end of the array
 void __fastcall__ oam_buffer_metaspr(u8_t x, u8_t y, u8_t num, const u8_t *meta);
 
+// buffer a metasprito into OAM with options
+// meta is an array of 4 byte arrays in the format: [x, y, spr, opt]
+// the value $80 mark the end of the array
+void __fastcall__ oam_buffer_metaspr_opt(u8_t x, u8_t y, u8_t opt, u8_t num, const u8_t *meta);
+
 // hide a given sprite
 void __fastcall__ oam_hide_spr(u8_t num);
 

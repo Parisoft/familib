@@ -6,7 +6,7 @@ OAMADDR = $2003
 OAMDATA = $2004
 OAMDMA  = $4014
 
-;extern void __fastcall__ oam_buffer_spr(u8 x, u8 y, u8 spr, u8 opt, u8 num);
+; void __fastcall__ oam_buffer_spr(u8 x, u8 y, u8 spr, u8 opt, u8 num);
 .proc _oam_buffer_spr 
     asl a 
     asl a 
