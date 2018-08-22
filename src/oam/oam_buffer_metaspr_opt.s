@@ -1,13 +1,13 @@
 	.importzp sp, oamptr, oamtmp1, oamtmp2, oamtmp3 
-	.export _oam_buffer_metaspr 
+	.export _oam_buffer_metaspr_opt 
 
 OAMBUFF = $0200
 OAMADDR = $2003
 OAMDATA = $2004
 OAMDMA  = $4014
 
-; void __fastcall__ oam_buffer_metaspr(u8 x, u8 y, u8 opt, u8 num, const u8 *meta);
-.proc _oam_buffer_metaspr 
+; void __fastcall__ oam_buffer_metaspr_opt(u8 x, u8 y, u8 opt, u8 num, const u8 *meta);
+.proc _oam_buffer_metaspr_opt 
     sta oamptr+0 
 	stx oamptr+1 
 	ldy #3		
