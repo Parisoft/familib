@@ -22,10 +22,10 @@ void joy1_poll_safe(void);
 
 void joy2_poll_safe(void);
 
-#define joy1_pressing(btn) (joy1.curr & btn)
+#define joy1_pressing(btn) (joy1.curr & (btn))
 
-#define joy1_pressed(btn) (joy1.prev & btn)
+#define joy1_pressed(btn) (joy1.prev & (btn))
 
-#define joy2_pressing(btn) (joy2.curr & btn)
+#define joy2_pressing(btn) (joy2.curr & (btn))
 
-#define joy2_pressed(btn) (joy2.prev & btn)
+#define joy2_pressed(btn) (joy2.prev & (btn))
