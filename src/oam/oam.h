@@ -32,3 +32,8 @@ void __fastcall__ oam_hide_spr(u8_t num);
 
 // hide all sprites from number to 63
 void __fastcall__ oam_hide_sprites_from(u8_t num);
+
+// hide all sprites in range
+// from is the 1st sprite in range (inclusive)
+// to is the last sprite in range (exclusive)
+void __fastcall__ oam_hide_sprites_range(u8_t from, u8_t to);
