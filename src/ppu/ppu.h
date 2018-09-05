@@ -159,6 +159,9 @@ u16_t ppu_next_name_table_h();
 // get next vertical name table addr
 u16_t ppu_next_name_table_v();
 
+// set the vram address
+void __fastcall__ ppu_vram_addr(u16_t addr);
+
 // set 16 bg palette colors
 void __fastcall__ ppu_load_bg_pal(const u8_t *data);
 
@@ -202,6 +205,15 @@ void __fastcall__ ppu_load_name_table_col(u16_t nt, u8_t col, const u8_t *data);
 // len0 and len1 are the lengths of the section
 // section is an arbitrary length 2D array of bytes
 void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t row, u8_t col, u8_t len0, u8_t len1, const u8_t *section);
+
+// set a name table with uncompressed RLE data
+// nt is a name table addr
+// PPUADDR must be loaded prior to call this function 
+void __fastcall__ ppu_unrle_name_table(const u8_t *data);
+
+// set a name table with uncompressed RLE data
+// nt is a name table addr
+void __fastcall__ ppu_unrle_name_table_at(u16_t nt, const u8_t *data);
 
 // set attribute table
 // nt is a name table addr
