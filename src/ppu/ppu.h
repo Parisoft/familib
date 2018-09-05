@@ -181,34 +181,60 @@ void __fastcall__ ppu_load_spr_pal_at(u8_t idx, const u8_t *data);
 void __fastcall__ ppu_load_spr_pal_color(u8_t idx, u8_t color);
 
 // set name table
+// data is a 960 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_name_table(const u8_t *data);
+
+// set name table
 // nt is a name table addr
 // data is a 960 bytes table
-void __fastcall__ ppu_load_name_table(u16_t nt, const u8_t *data);
+void __fastcall__ ppu_load_name_table_at(u16_t nt, const u8_t *data);
+
+// set 1 name table tile
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_name_table_tile(u16_t tile, u8_t row, u8_t col);
 
 // set 1 name table tile
 // nt is a name table addr
-void __fastcall__ ppu_load_name_table_tile(u8_t tile, u16_t nt, u8_t row, u8_t col);
+void __fastcall__ ppu_load_name_table_tile_at(u8_t tile, u16_t nt, u8_t row, u8_t col);
+
+// set a name table row
+// data is a 960 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_name_table_row(u8_t row, const u8_t *data);
 
 // set a name table row
 // nt is a name table addr
 // data is a 960 bytes table
-void __fastcall__ ppu_load_name_table_row(u16_t nt, u8_t row, const u8_t *data);
+void __fastcall__ ppu_load_name_table_row_at(u16_t nt, u8_t row, const u8_t *data);
+
+// set a name table column
+// data is 960 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_name_table_col(u8_t col, const u8_t *data);
 
 // set a name table column
 // nt is a name table addr
 // data is 960 bytes table
-void __fastcall__ ppu_load_name_table_col(u16_t nt, u8_t col, const u8_t *data);
+void __fastcall__ ppu_load_name_table_col_at(u16_t nt, u8_t col, const u8_t *data);
+
+// set a name table section
+// row and col are the offset on screen
+// rows and cols are the lengths of the section
+// section is an arbitrary length 2D array of bytes
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_name_table_section(u8_t row, u8_t col, u8_t rows, u8_t cols, const u8_t *section);
 
 // set a name table section
 // nt is a name table addr
 // row and col are the offset on screen
-// len0 and len1 are the lengths of the section
+// rows and cols are the lengths of the section
 // section is an arbitrary length 2D array of bytes
-void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t row, u8_t col, u8_t len0, u8_t len1, const u8_t *section);
+void __fastcall__ ppu_load_name_table_section_at(u16_t nt, u8_t row, u8_t col, u8_t rows, u8_t cols, const u8_t *section);
 
 // set a name table with uncompressed RLE data
 // nt is a name table addr
-// PPUADDR must be loaded prior to call this function 
+// PPUADDR must be loaded prior to call this function
 void __fastcall__ ppu_unrle_name_table(const u8_t *data);
 
 // set a name table with uncompressed RLE data
@@ -216,20 +242,39 @@ void __fastcall__ ppu_unrle_name_table(const u8_t *data);
 void __fastcall__ ppu_unrle_name_table_at(u16_t nt, const u8_t *data);
 
 // set attribute table
+// data is 64 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_attr_table(const u8_t *data);
+
+// set attribute table
 // nt is a name table addr
 // data is 64 bytes table
-void __fastcall__ ppu_load_attr_table(u16_t nt, const u8_t *data);
+void __fastcall__ ppu_load_attr_table_at(u16_t nt, const u8_t *data);
+
+// set an attribute table row
+// data is 65 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_attr_table_row(u8_t row, const u8_t *data);
 
 // set an attribute table row
 // nt is a name table addr
 // data is 65 bytes table
-void __fastcall__ ppu_load_attr_table_row(u16_t nt, u8_t row, const u8_t *data);
+void __fastcall__ ppu_load_attr_table_row_at(u16_t nt, u8_t row, const u8_t *data);
+
+// set an attribute table col
+// data is 65 bytes table
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_attr_table_col(u8_t col, const u8_t *data);
 
 // set an attribute table col
 // nt is a name table addr
 // data is 65 bytes table
-void __fastcall__ ppu_load_attr_table_col(u16_t nt, u8_t col, const u8_t *data);
+void __fastcall__ ppu_load_attr_table_col_at(u16_t nt, u8_t col, const u8_t *data);
+
+// set an attribute cell
+// PPUADDR must be loaded prior to call this function
+void __fastcall__ ppu_load_attr_table_cell(u8_t data, u8_t row, u8_t col);
 
 // set an attribute cell
 // nt is a name table addr
-void __fastcall__ ppu_load_attr_table_cell(u8_t data, u16_t nt, u8_t row, u8_t col);
+void __fastcall__ ppu_load_attr_table_cell_at(u8_t data, u16_t nt, u8_t row, u8_t col);
