@@ -201,10 +201,10 @@ void __fastcall__ ppu_load_name_table_col(u16_t nt, u8_t col, const u8_t *data);
 
 // set a name table section
 // nt is a name table addr
-// row and col are the offset on screen
-// len0 and len1 are the lengths of the section
+// rowoff and coloff are the offset on screen
+// rowlen and collen are the lengths of the section
 // section is an arbitrary length 2D array of bytes
-void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t row, u8_t col, u8_t len0, u8_t len1, const u8_t *section);
+void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t rowoff, u8_t coloff, u8_t rowlen, u8_t collen, const u8_t *section);
 
 // set a name table with uncompressed RLE data
 // nt is a name table addr
