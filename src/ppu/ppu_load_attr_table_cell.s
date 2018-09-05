@@ -6,7 +6,6 @@
 ; void __fastcall__ ppu_load_attr_table_cell(u8 data, u16 nt, u8 row, u8 col);
 .proc _ppu_load_attr_table_cell 
 	sta pputmp1	; tmp1 = col
-	lda PPUSTATUS 
 	ldy #0
 	lda (sp), y	; LDA row
 	asl A 

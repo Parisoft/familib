@@ -32,7 +32,6 @@
 	sta PPUADDR 
 	lda pputmp1 
 	sta PPUADDR 
-	lda PPUSTATUS 
 	ldy #0
 @loop:
 	lda (ppuptr1), y 

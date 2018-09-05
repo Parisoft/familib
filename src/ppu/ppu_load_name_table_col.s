@@ -11,7 +11,6 @@ ctrl = _ppu+0
 	stx ppuptr1+1 
 	lda #%00000100	; vram inc by 32 going down
 	sta PPUCTRL 
-	lda PPUSTATUS 
 	ldy #2
 	lda (sp), y	; LDA nt+1
 	sta PPUADDR 

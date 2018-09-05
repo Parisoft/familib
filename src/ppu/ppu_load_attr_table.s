@@ -7,7 +7,6 @@
 .proc _ppu_load_attr_table 
 	sta ppuptr1+0	; ptr1 = *data
 	stx ppuptr1+1 
-	lda PPUSTATUS 
 	ldy #1
 	lda (sp), y	; LDA nt+1
 	adc #>$03C0

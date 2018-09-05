@@ -7,7 +7,6 @@
 .proc _ppu_load_attr_table_col 
 	sta ppuptr1+0	; ptr1 = *data
 	stx ppuptr1+1 
-	lda PPUSTATUS 
 	ldy #0
 	lda (sp), y	    ; LDA col
 	sta pputmp1	    ; tmp1 = col

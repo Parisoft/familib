@@ -7,7 +7,6 @@
 .proc _ppu_load_name_table 
 	sta ppuptr1+0 
 	stx ppuptr1+1 
-	lda PPUSTATUS 
 	ldy #1
 	lda (sp), y	; LDA nt+1    
 	sta PPUADDR       

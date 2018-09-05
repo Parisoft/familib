@@ -30,7 +30,6 @@
 	lda #0
 	adc pputmp2 ; tmp2 = >offset
 	sta pputmp2 
-	lda PPUSTATUS 
 	iny 
 	lda (sp), y     ; LDA nt+0
 	clc 

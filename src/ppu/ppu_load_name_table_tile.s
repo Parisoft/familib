@@ -30,7 +30,6 @@
 	sta PPUADDR             
 	lda pputmp1        
 	sta PPUADDR        
-	lda PPUSTATUS     
 	iny 
 	lda (sp), y	; LDA tile                
 	sta PPUDATA    
