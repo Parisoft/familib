@@ -54,75 +54,81 @@
 extern ppu_t ppu;
 #pragma zpsym("ppu");
 
-#define ppu_set_name_table_top_left() ppu.ctrl = ppu.ctrl & 0xFC;
+#define ppu_set_name_table_top_left() (ppu.ctrl &= 0xFC)
 
-#define ppu_set_name_table_top_right() ppu.ctrl = (ppu.ctrl & 0xFC) | 0x01;
+#define ppu_set_name_table_top_right() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x01)
 
-#define ppu_set_name_table_bot_left() ppu.ctrl = (ppu.ctrl & 0xFC) | 0x02;
+#define ppu_set_name_table_bot_left() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x02)
 
-#define ppu_set_name_table_bot_right() ppu.ctrl = ppu.ctrl | 0x03;
+#define ppu_set_name_table_bot_right() (ppu.ctrl |= 0x03)
 
-#define ppu_set_vram_inc_by_1_going_accross() ppu.ctrl = ppu.ctrl & 0xFB;
+#define ppu_set_vram_inc_by_1_going_accross() (ppu.ctrl &= 0xFB)
 
-#define ppu_set_vram_inc_by_32_going_down() ppu.ctrl = ppu.ctrl | 0x04;
+#define ppu_set_vram_inc_by_32_going_down() (ppu.ctrl |= 0x04)
 
-#define ppu_set_spr_at_left_pattern_table() ppu.ctrl = ppu.ctrl & 0xF7;
+#define ppu_set_spr_at_left_pattern_table() (ppu.ctrl &= 0xF7)
 
-#define ppu_set_spr_at_right_pattern_table() ppu.ctrl = ppu.ctrl | 0x08;
+#define ppu_set_spr_at_right_pattern_table() (ppu.ctrl |= 0x08)
 
-#define ppu_set_bg_at_left_pattern_table() ppu.ctrl = ppu.ctrl & 0xEF;
+#define ppu_set_bg_at_left_pattern_table() (ppu.ctrl &= 0xEF)
 
-#define ppu_set_bg_at_right_pattern_table() ppu.ctrl = ppu.ctrl | 0x10;
+#define ppu_set_bg_at_right_pattern_table() (ppu.ctrl |= 0x10)
 
-#define ppu_set_spr_8x8() ppu.ctrl = ppu.ctrl & 0xDF;
+#define ppu_set_spr_8x8() (ppu.ctrl &= 0xDF)
 
-#define ppu_set_spr_8x16() ppu.ctrl = ppu.ctrl | 0x20;
+#define ppu_set_spr_8x16() (ppu.ctrl |= 0x20)
 
-#define ppu_set_master_mode_on() ppu.ctrl = ppu.ctrl & 0xBF;
+#define ppu_set_master_mode_on() (ppu.ctrl &= 0xBF)
 
-#define ppu_set_mater_mode_off() ppu.ctrl = ppu.ctrl | 0x40;
+#define ppu_set_mater_mode_off() (ppu.ctrl |= 0x40)
 
-#define ppu_set_nmi_on() ppu.ctrl = ppu.ctrl | 0x80;
+#define ppu_set_nmi_on() (ppu.ctrl |= 0x80)
 
-#define ppu_set_nmi_off() ppu.ctrl = ppu.ctrl & 0x7F;
+#define ppu_set_nmi_off() (ppu.ctrl &= 0x7F)
 
-#define ppu_set_greyscale_on() ppu.mask = ppu.mask | 0x01;
+#define ppu_set_greyscale_on() (ppu.mask |= 0x01)
 
-#define ppu_set_greyscale_off() ppu.mask = ppu.mask & 0xFE;
+#define ppu_set_greyscale_off() (ppu.mask &= 0xFE)
 
-#define ppu_set_bg_left_col_on() ppu.mask = ppu.mask | 0x02;
+#define ppu_set_bg_left_col_on() (ppu.mask |= 0x02)
 
-#define ppu_set_bg_left_col_off() ppu.mask = ppu.mask & 0xFD;
+#define ppu_set_bg_left_col_off() (ppu.mask &= 0xFD)
 
-#define ppu_set_spr_left_col_on() ppu.mask = ppu.mask | 0x04;
+#define ppu_set_spr_left_col_on() (ppu.mask |= 0x04)
 
-#define ppu_set_spr_left_col_off() ppu.mask = ppu.mask & 0xFB;
+#define ppu_set_spr_left_col_off() (ppu.mask &= 0xFB)
 
-#define ppu_set_bg_on() ppu.mask = ppu.mask | 0x08;
+#define ppu_set_bg_on() (ppu.mask |= 0x08)
 
-#define ppu_set_bg_off() ppu.mask = ppu.mask & 0xF7;
+#define ppu_set_bg_off() (ppu.mask &= 0xF7)
 
-#define ppu_set_spr_on() ppu.mask = ppu.mask | 0x10;
+#define ppu_set_spr_on() (ppu.mask |= 0x10)
 
-#define ppu_set_spr_off() ppu.mask = ppu.mask & 0xEF;
+#define ppu_set_spr_off() (ppu.mask &= 0xEF)
 
-#define ppu_set_red_emphasis_on() ppu.mask = ppu.mask | 0x20;
+#define ppu_set_red_emphasis_on() (ppu.mask |= 0x20)
 
-#define ppu_set_red_emphasis_off() ppu.mask = ppu.mask & 0xDF;
+#define ppu_set_red_emphasis_off() (ppu.mask &= 0xDF)
 
-#define ppu_set_green_emphasis_on() ppu.mask = ppu.mask | 0x40;
+#define ppu_set_green_emphasis_on() (ppu.mask |= 0x40)
 
-#define ppu_set_green_emphasis_off() ppu.mask = ppu.mask & 0xBF;
+#define ppu_set_green_emphasis_off() (ppu.mask &= 0xBF)
 
-#define ppu_set_blue_emphasis_on() ppu.mask = ppu.mask | 0x80;
+#define ppu_set_blue_emphasis_on() (ppu.mask |= 0x80)
 
-#define ppu_set_blue_emphasis_off() ppu.mask = ppu.mask & 0x7F;
+#define ppu_set_blue_emphasis_off() (ppu.mask &= 0x7F)
+
+#define ppu_set_rendering_on() (ppu.mask |= 0x18)
+
+#define ppu_set_rendering_off() (ppu.mask &= 0xE7)
+
+#define ppu_rendering() (ppu.mask & 0x18)
 
 // swaps name tables horizontally
-#define ppu_swap_name_tables_h() ppu.ctrl = ppu.ctrl ^ 1;
+#define ppu_swap_name_tables_h() (ppu.ctrl ^= 1)
 
 // swaps name tables vertically
-#define ppu_swap_name_tables_v() ppu.ctrl = ppu.ctrl ^ 2;
+#define ppu_swap_name_tables_v() (ppu.ctrl ^= 2)
 
 // wait for a vblank to happen
 #define ppu_wait_vblank() \
@@ -142,10 +148,10 @@ extern ppu_t ppu;
 #define ppu_update()          \
     PPUADDR   = 0;            \
     PPUADDR   = 0;            \
-    PPUCTRL   = ppu.ctrl;     \
-    PPUMASK   = ppu.mask;     \
     PPUSCROLL = ppu.scroll.x; \
-    PPUSCROLL = ppu.scroll.y;
+    PPUSCROLL = ppu.scroll.y; \
+    PPUCTRL   = ppu.ctrl;     \
+    PPUMASK   = ppu.mask;
 
 // detect the system region: NTSC or PAL
 void ppu_detect_system();
@@ -208,7 +214,7 @@ void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t rowoff, u8_t coloff
 
 // set a name table with uncompressed RLE data
 // nt is a name table addr
-// PPUADDR must be loaded prior to call this function 
+// PPUADDR must be loaded prior to call this function
 void __fastcall__ ppu_unrle_name_table(const u8_t *data);
 
 // set a name table with uncompressed RLE data
