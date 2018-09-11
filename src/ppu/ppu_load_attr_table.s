@@ -9,6 +9,7 @@
 	stx ppuptr1+1 
 	ldy #1
 	lda (sp), y	; LDA nt+1
+	clc 
 	adc #>$03C0
 	sta PPUADDR 
 	lda #<$03C0
