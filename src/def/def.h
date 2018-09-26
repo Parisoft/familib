@@ -29,6 +29,12 @@ typedef struct {
     scroll_t scroll;
     u8_t     system;
 } ppu_t;
+
+typedef struct {
+    u8_t mode;
+    u8_t index;
+    u8_t bank;
+} mmc3_t;
 #endif
 #define null 0
 #define true 1

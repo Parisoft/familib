@@ -1,0 +1,10 @@
+MMC3_BANKSELECT = $8000
+MMC3_BANKSWITCH = $8001
+MMC3_IRQLATCH = $C000
+MMC3_IRQRELOAD = $C001
+MMC3_IRQDISABLE = $E000
+MMC3_IRQENABLE = $E001
+
+.define mmc3_mode _mmc3+0 
+.define mmc3_index _mmc3+1 
+.define mmc3_bank _mmc3+2 

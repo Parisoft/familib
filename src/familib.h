@@ -4,3 +4,4 @@
 #include "oam/oam.h"
 #include "joy/joy.h"
 #include "ft2/ft2.h"
+#include "mapper/mmc3.h"

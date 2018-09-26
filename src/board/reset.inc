@@ -86,6 +86,11 @@ cstack: .res STACK_SIZE
 
 	lda PPUSTATUS ; reset the PPU latch
 
+    ; custom mapper initialization
+    .ifdef __MAPPER_INIT__ 
+    jsr __MAPPER_INIT__ 
+    .endif
+
     jmp _main ; call into our C main()
 .endproc
 
