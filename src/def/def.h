@@ -33,7 +33,7 @@ typedef struct {
 typedef struct {
     u8_t mode;
     u8_t index;
-    u8_t bank;
+    u8_t bank[8];
 } mmc3_t;
 #endif
 #define null 0

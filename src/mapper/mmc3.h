@@ -7,7 +7,7 @@
 #define MMC3_IRQDISABLE 0xE000
 #define MMC3_IRQENABLE 0xE001
 
-extern mmc3_t mmc3[8];
+extern mmc3_t mmc3;
 #pragma zpsym("mmc3");
 
 // Select the bank at mmc3.index
