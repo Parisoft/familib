@@ -7,4 +7,5 @@
     ldx mmc3_index 
     sta mmc3_bank, x
     sta MMC3_BANKSWITCH 
+    rts 
 .endproc

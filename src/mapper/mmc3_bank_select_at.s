@@ -6,5 +6,6 @@
 .proc _mmc3_bank_select_at 
     sta mmc3_index 
     ora mmc3_mode 
-    sta MMC3_BANKSELECT  
+    sta MMC3_BANKSELECT 
+    rts 
 .endproc

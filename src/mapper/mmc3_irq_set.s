@@ -8,4 +8,5 @@
    sta MMC3_IRQLATCH 
    sta MMC3_IRQRELOAD 
    sta MMC3_IRQENABLE 
+   rts 
 .endproc

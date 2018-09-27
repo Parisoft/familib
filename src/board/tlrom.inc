@@ -18,9 +18,12 @@ MMC3_PRG_MODE = 1
 ;    4 x 1 KiB banks at $0000-$0FFF
 MMC3_CHR_INVERSION = 1
 
+    .importzp _mmc3 
     .proc mmc3_init 
     lda #((MMC3_PRG_MODE << 6) | (MMC3_CHR_INVERSION << 7))
+    sta _mmc3 
     sta $8000
+    rts 
     .endproc
 ____MAPPER_INIT__ = mmc3_init 
     
