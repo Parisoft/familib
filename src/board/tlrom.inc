@@ -25,7 +25,7 @@ MMC3_CHR_INVERSION = 1
     sta $8000
     rts 
     .endproc
-____MAPPER_INIT__ = mmc3_init 
+__MAPPER_INIT__ = mmc3_init 
     
     .include "reset.inc"
     

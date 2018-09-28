@@ -16,3 +16,9 @@
 
 // return from interrupt for use in nmi() and irq() functions
 #define cpu_rti() __asm__("rti");
+
+// enable irq
+#define cpu_irq_on() __asm__("cli");
+
+// disable irq
+#define cpu_irq_off() __asm__("sei");
