@@ -1,5 +1,16 @@
 ; startup code for cc65/ca65
 
+
+    .out "  ______              _ _ _ _      "
+    .out " |  ____|            (_) (_) |     "
+    .out " | |__ __ _ _ __ ___  _| |_| |__   "
+    .out " |  __/ _` | '_ ` _ \| | | | '_ \  "
+    .out " | | | (_| | | | | | | | | | |_) | "
+    .out " |_|  \__,_|_| |_| |_|_|_|_|_.__/  "
+    .out " "
+    .out "Repo https://github.com/Parisoft/familib"
+    .out " "
+
     .import _main, _nmi, _irq 
     .export __STARTUP__:absolute=1
 
