@@ -28,16 +28,14 @@ MMC3_CHR_INVERSION = 1
 __MAPPER_INIT__ = mmc3_init 
     
     .include "reset.inc"
+    .include "nes2header.inc"
     
     .segment "HEADER"
 
-; iNES header
-; see http://wiki.nesdev.com/w/index.php/INES
-
-.byte $4e, $45, $53, $1a ; "NES" followed by MS-DOS EOF
-.byte $08                ; size of PRG ROM in 16 KiB units
-.byte $10                ; size of CHR ROM in 8 KiB units
-.byte $40|$01            ; mapper 004 (MMC3) | vertical mirroring
-.byte $00                ; mapper 004
-.byte $00                ; size of PRG RAM in 8 KiB units
-.res 7, $00              ; zero-filled
+    nes2mapper  4
+    nes2prg     08 * 16 * 1024
+    nes2chr     16 * 08 * 1024
+    nes2mirror  'V'
+    nes2tv      'N', 'P'
+    nes2end 
+    

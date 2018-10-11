@@ -22,7 +22,7 @@ OAMDMA      = $4014
 APUDMC      = $4010
 APUSTATUS   = $4015
 APUFRAME    = $4017
-STACK_SIZE  = $100
+STACK_SIZE  = $80
 
     .segment "BSS"
 
@@ -31,11 +31,7 @@ cstack: .res STACK_SIZE
     .segment "STARTUP"
 
 .proc reset 
-    .ifdef IRQ_ON 
-    cli             ; Enable interrupts
-    .else
     sei             ; Disable interrupts
-    .endif
     cld             ; Disabel decimal mode
     ldx #$FF
     txs             ; Set up stack

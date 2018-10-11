@@ -145,6 +145,16 @@ extern ppu_t ppu;
     __asm__("bit $2002");         \
     __asm__("bvc %g", wait_hit);
 
+#define ppu_wait_spr_overflow()   \
+    coverflow:                    \
+    __asm__("lda $2002");         \
+    __asm__("and #%%00100000");   \
+    __asm__("bne %g", coverflow); \
+    woverflow:                    \
+    __asm__("lda $2002");         \
+    __asm__("and #%%00100000");   \
+    __asm__("beq %g", woverflow);
+
 #define ppu_update()          \
     PPUADDR   = 0;            \
     PPUADDR   = 0;            \
