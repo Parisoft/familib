@@ -33,8 +33,8 @@ __MAPPER_INIT__ = mmc3_init
     .segment "HEADER"
 
     nes2mapper  4
-    nes2prg     08 * 16 * 1024
-    nes2chr     16 * 08 * 1024
+    nes2prg     08 * 16 * 1024 ; 128 KiB
+    nes2chr     16 * 08 * 1024 ; 128 KiB
     nes2mirror  'V'
     nes2tv      'N', 'P'
     nes2end 
