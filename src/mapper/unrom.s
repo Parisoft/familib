@@ -1,4 +1,5 @@
-    .exportzp _unrom, _unrom_banktable 
+    .exportzp _unrom 
+    .export _unrom_banktable 
 
     .segment "RODATA"
 
