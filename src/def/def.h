@@ -38,7 +38,11 @@ typedef struct {
 
 typedef struct {
     u8_t bank;
-} unrom_t;
+} uxrom_t;
+
+typedef struct {
+    u8_t bank;
+} axrom_t;
 #endif
 #define null 0
 #define true 1

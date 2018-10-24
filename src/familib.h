@@ -5,4 +5,5 @@
 #include "joy/joy.h"
 #include "ft2/ft2.h"
 #include "mapper/mmc3.h"
-#include "mapper/unrom.h"
+#include "mapper/uxrom.h"
+#include "mapper/axrom.h"
