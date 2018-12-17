@@ -1,5 +1,5 @@
-    .import _axrom, _axrom_banktable 
-    .importzp ptr4, tmp4 
+    .import _axrom_banktable 
+    .importzp _axrom, ptr4, tmp4 
     .export _axrom_farcall_proc 
 
     .proc _axrom_farcall_proc 
