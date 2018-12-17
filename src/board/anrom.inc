@@ -5,7 +5,7 @@
     .segment "HEADER"
 
     nes2mapper  7
-    nes2prg     2 * 32 * 1024
+    nes2prg     4 * 32 * 1024
     nes2chr     0 * 08 * 1024
     nes2chrram  8 * 1024
     nes2mirror  '4'
