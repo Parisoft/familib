@@ -175,9 +175,6 @@ u16_t ppu_next_name_table_h();
 // get next vertical name table addr
 u16_t ppu_next_name_table_v();
 
-// set the vram address
-void __fastcall__ ppu_vram_addr(u16_t addr);
-
 // set 16 bg palette colors
 void __fastcall__ ppu_load_bg_pal(const u8_t *data);
 

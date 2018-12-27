@@ -7,6 +7,7 @@
 #include "mapper/uxrom.h"
 #include "oam/oam.h"
 #include "ppu/ppu.h"
+#include "vram/vram.h"
 
 //-----------------
 // Segment pragmas
