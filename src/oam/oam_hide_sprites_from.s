@@ -10,12 +10,15 @@ OAMDMA  = $4014
     asl A 
     asl A 
     tax 
-    lda #$F0
+    lda #$FE
 @hide:
-    sta OAMBUFF, x
+    sta OAMBUFF+0, x
+    sta OAMBUFF+1, x
+    sta OAMBUFF+2, x
+    sta OAMBUFF+3, x
     .repeat 4
     inx 
-    .endrepeat
+    .endrep
     bne @hide
     rts 
 .endproc
