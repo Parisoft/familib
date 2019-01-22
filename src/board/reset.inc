@@ -14,15 +14,15 @@
     .import _main, _nmi, _irq 
     .export __STARTUP__:absolute=1
 
-PPUCTRL     = $2000
-PPUMASK     = $2001
-PPUSTATUS   = $2002
-OAMADDRESS  = $2003
-OAMDMA      = $4014
-APUDMC      = $4010
-APUSTATUS   = $4015
-APUFRAME    = $4017
-STACK_SIZE  = $80
+    .define PPUCTRL     $2000
+    .define PPUMASK     $2001
+    .define PPUSTATUS   $2002
+    .define OAMADDRESS  $2003
+    .define OAMDMA      $4014
+    .define APUDMC      $4010
+    .define APUSTATUS   $4015
+    .define APUFRAME    $4017
+    .define STACK_SIZE  $40
 
     .segment "BSS"
 

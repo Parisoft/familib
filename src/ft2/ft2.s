@@ -4,7 +4,7 @@
 
 	.segment "ZEROPAGE"
 
-ft2temp:		.res 3
+ft2temp:	.res 3
 
 	.segment "BSS"
 	.align $100, 0
@@ -19,14 +19,13 @@ FT_SFX_STREAMS	= 4		    ;number of sound effects played at once, 1..4
 .define FT_PAL_SUPPORT	1	;undefine to exclude PAL support
 .define FT_NTSC_SUPPORT	1	;undefine to exclude NTSC support
 
-
 	.segment "CODE"
 	
 	.include "famitone2.inc"
 
 	.segment "BSS" 
 
-ft2vars:		.res FT_BASE_SIZE 
+ft2vars:	.res FT_BASE_SIZE 
 	
 	.segment "CODE" 
 
