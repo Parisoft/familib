@@ -1,7 +1,8 @@
-    .segment "PRG00"
     .importzp ptr1 
     .export _vram_cp1k 
     
+    .segment "CODE"
+
     .proc _vram_cp1k 
     sta ptr1+0 
     stx ptr1+1 
