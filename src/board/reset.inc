@@ -30,7 +30,7 @@ cstack: .res STACK_SIZE
 
     .segment "STARTUP"
 
-.proc reset 
+    .proc reset 
     sei             ; Disable interrupts
     cld             ; Disabel decimal mode
     ldx #$FF
@@ -71,7 +71,7 @@ cstack: .res STACK_SIZE
 	sta $0200, x
     .repeat 4
 	inx 
-    .endrepeat
+    .endrep
 	bne @clear_oam
 
     ; Second of two waits for vertical blank to make sure that the
@@ -99,11 +99,10 @@ cstack: .res STACK_SIZE
     .endif
 
     jmp _main ; call into our C main()
-.endproc
+    .endproc
 
     .segment "VECTORS"
 
-.word _nmi   ;$fffa NMI
-.word reset  ;$fffc Reset
-.word _irq   ;$fffe IRQ
-
+    .word _nmi   ;$fffa NMI
+    .word reset  ;$fffc Reset
+    .word _irq   ;$fffe IRQ
