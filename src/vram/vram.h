@@ -1,4 +1,4 @@
-#include "../def/def.h"
+#include "def.h"
 
 // set the vram address
 void __fastcall__ vram_addr(u16_t addr);

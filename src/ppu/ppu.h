@@ -1,4 +1,19 @@
-#include "../def/def.h"
+#include "def.h"
+
+#ifndef __FAMIPPU__
+#define __FAMIPPU__
+typedef struct {
+    u8_t x;
+    u8_t y;
+} scroll_t;
+
+typedef struct {
+    u8_t     ctrl;
+    u8_t     mask;
+    scroll_t scroll;
+    u8_t     system;
+} ppu_t;
+#endif
 
 // Name table top left address
 #define NAME_TABLE_TOP_LEFT 0x2000
@@ -54,29 +69,29 @@
 extern ppu_t ppu;
 #pragma zpsym("ppu");
 
-#define ppu_set_name_table_top_left() (ppu.ctrl &= 0xFC)
+#define ppu_set_nt_top_left() (ppu.ctrl &= 0xFC)
 
-#define ppu_set_name_table_top_right() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x01)
+#define ppu_set_nt_top_right() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x01)
 
-#define ppu_set_name_table_bot_left() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x02)
+#define ppu_set_nt_bot_left() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x02)
 
-#define ppu_set_name_table_bot_right() (ppu.ctrl |= 0x03)
+#define ppu_set_nt_bot_right() (ppu.ctrl |= 0x03)
 
 #define ppu_set_vram_inc_by_1_going_accross() (ppu.ctrl &= 0xFB)
 
 #define ppu_set_vram_inc_by_32_going_down() (ppu.ctrl |= 0x04)
 
-#define ppu_set_spr_at_left_pattern_table() (ppu.ctrl &= 0xF7)
+#define ppu_set_sp_at_left_pattern_table() (ppu.ctrl &= 0xF7)
 
-#define ppu_set_spr_at_right_pattern_table() (ppu.ctrl |= 0x08)
+#define ppu_set_sp_at_right_pattern_table() (ppu.ctrl |= 0x08)
 
 #define ppu_set_bg_at_left_pattern_table() (ppu.ctrl &= 0xEF)
 
 #define ppu_set_bg_at_right_pattern_table() (ppu.ctrl |= 0x10)
 
-#define ppu_set_spr_8x8() (ppu.ctrl &= 0xDF)
+#define ppu_set_sp_8x8() (ppu.ctrl &= 0xDF)
 
-#define ppu_set_spr_8x16() (ppu.ctrl |= 0x20)
+#define ppu_set_sp_8x16() (ppu.ctrl |= 0x20)
 
 #define ppu_set_master_mode_on() (ppu.ctrl &= 0xBF)
 
@@ -94,17 +109,17 @@ extern ppu_t ppu;
 
 #define ppu_set_bg_left_col_off() (ppu.mask &= 0xFD)
 
-#define ppu_set_spr_left_col_on() (ppu.mask |= 0x04)
+#define ppu_set_sp_left_col_on() (ppu.mask |= 0x04)
 
-#define ppu_set_spr_left_col_off() (ppu.mask &= 0xFB)
+#define ppu_set_sp_left_col_off() (ppu.mask &= 0xFB)
 
 #define ppu_set_bg_on() (ppu.mask |= 0x08)
 
 #define ppu_set_bg_off() (ppu.mask &= 0xF7)
 
-#define ppu_set_spr_on() (ppu.mask |= 0x10)
+#define ppu_set_sp_on() (ppu.mask |= 0x10)
 
-#define ppu_set_spr_off() (ppu.mask &= 0xEF)
+#define ppu_set_sp_off() (ppu.mask &= 0xEF)
 
 #define ppu_set_red_emphasis_on() (ppu.mask |= 0x20)
 
@@ -125,10 +140,10 @@ extern ppu_t ppu;
 #define ppu_rendering() (ppu.mask & 0x18)
 
 // swaps name tables horizontally
-#define ppu_swap_name_tables_h() (ppu.ctrl ^= 1)
+#define ppu_swap_nt_h() (ppu.ctrl ^= 1)
 
 // swaps name tables vertically
-#define ppu_swap_name_tables_v() (ppu.ctrl ^= 2)
+#define ppu_swap_nt_v() (ppu.ctrl ^= 2)
 
 // wait for a vblank to happen
 #define ppu_wait_vblank() \
@@ -137,7 +152,7 @@ extern ppu_t ppu;
     __asm__("bpl %g", wait_vblank);
 
 // wait for the sprite 0 hit to happen
-#define ppu_wait_spr0_hit()       \
+#define ppu_wait_sp0_hit()       \
     clear_hit:                    \
     __asm__("bit $2002");         \
     __asm__("bvs %g", clear_hit); \
@@ -145,7 +160,7 @@ extern ppu_t ppu;
     __asm__("bit $2002");         \
     __asm__("bvc %g", wait_hit);
 
-#define ppu_wait_spr_overflow()   \
+#define ppu_wait_sp_overflow()   \
     coverflow:                    \
     __asm__("lda $2002");         \
     __asm__("and #%%00100000");   \
@@ -167,13 +182,13 @@ extern ppu_t ppu;
 void ppu_detect_system();
 
 // get current name table addr
-u16_t ppu_curr_name_table();
+u16_t ppu_curr_nt();
 
 // get next horizontal name table addr
-u16_t ppu_next_name_table_h();
+u16_t ppu_next_nt_h();
 
 // get next vertical name table addr
-u16_t ppu_next_name_table_v();
+u16_t ppu_next_nt_v();
 
 // set 16 bg palette colors
 void __fastcall__ ppu_load_bg_pal(const u8_t *data);
@@ -184,65 +199,65 @@ void __fastcall__ ppu_load_bg_pal_at(u8_t idx, const u8_t *data);
 // set 1 bg palette color
 void __fastcall__ ppu_load_bg_pal_color(u8_t idx, u8_t color);
 
-// set 16 spr palette colors
-void __fastcall__ ppu_load_spr_pal(const u8_t *data);
+// set 16 sp palette colors
+void __fastcall__ ppu_load_sp_pal(const u8_t *data);
 
-// set 4 spr palette colors at index
-void __fastcall__ ppu_load_spr_pal_at(u8_t idx, const u8_t *data);
+// set 4 sp palette colors at index
+void __fastcall__ ppu_load_sp_pal_at(u8_t idx, const u8_t *data);
 
-// set 1 spr palette color
-void __fastcall__ ppu_load_spr_pal_color(u8_t idx, u8_t color);
+// set 1 sp palette color
+void __fastcall__ ppu_load_sp_pal_color(u8_t idx, u8_t color);
 
 // set name table
 // nt is a name table addr
 // data is a 960 bytes table
-void __fastcall__ ppu_load_name_table(u16_t nt, const u8_t *data);
+void __fastcall__ ppu_load_nt(u16_t nt, const u8_t *data);
 
 // set 1 name table tile
 // nt is a name table addr
-void __fastcall__ ppu_load_name_table_tile(u8_t tile, u16_t nt, u8_t row, u8_t col);
+void __fastcall__ ppu_load_nt_tile(u8_t tile, u16_t nt, u8_t row, u8_t col);
 
 // set a name table row
 // nt is a name table addr
 // data is a 960 bytes table
-void __fastcall__ ppu_load_name_table_row(u16_t nt, u8_t row, const u8_t *data);
+void __fastcall__ ppu_load_nt_row(u16_t nt, u8_t row, const u8_t *data);
 
 // set a name table column
 // nt is a name table addr
 // data is 960 bytes table
-void __fastcall__ ppu_load_name_table_col(u16_t nt, u8_t col, const u8_t *data);
+void __fastcall__ ppu_load_nt_col(u16_t nt, u8_t col, const u8_t *data);
 
 // set a name table section
 // nt is a name table addr
 // rowoff and coloff are the offset on screen
 // rowlen and collen are the lengths of the section
 // section is an arbitrary length 2D array of bytes
-void __fastcall__ ppu_load_name_table_section(u16_t nt, u8_t rowoff, u8_t coloff, u8_t rowlen, u8_t collen, const u8_t *section);
+void __fastcall__ ppu_load_nt_section(u16_t nt, u8_t rowoff, u8_t coloff, u8_t rowlen, u8_t collen, const u8_t *section);
 
 // set a name table with uncompressed RLE data
 // nt is a name table addr
 // PPUADDR must be loaded prior to call this function
-void __fastcall__ ppu_unrle_name_table(const u8_t *data);
+void __fastcall__ ppu_unrle_nt(const u8_t *data);
 
 // set a name table with uncompressed RLE data
 // nt is a name table addr
-void __fastcall__ ppu_unrle_name_table_at(u16_t nt, const u8_t *data);
+void __fastcall__ ppu_unrle_nt_at(u16_t nt, const u8_t *data);
 
 // set attribute table
 // nt is a name table addr
 // data is 64 bytes table
-void __fastcall__ ppu_load_attr_table(u16_t nt, const u8_t *data);
+void __fastcall__ ppu_load_at(u16_t nt, const u8_t *data);
 
 // set an attribute table row
 // nt is a name table addr
 // data is 65 bytes table
-void __fastcall__ ppu_load_attr_table_row(u16_t nt, u8_t row, const u8_t *data);
+void __fastcall__ ppu_load_at_row(u16_t nt, u8_t row, const u8_t *data);
 
 // set an attribute table col
 // nt is a name table addr
 // data is 65 bytes table
-void __fastcall__ ppu_load_attr_table_col(u16_t nt, u8_t col, const u8_t *data);
+void __fastcall__ ppu_load_at_col(u16_t nt, u8_t col, const u8_t *data);
 
 // set an attribute cell
 // nt is a name table addr
-void __fastcall__ ppu_load_attr_table_cell(u8_t data, u16_t nt, u8_t row, u8_t col);
+void __fastcall__ ppu_load_at_cell(u8_t data, u16_t nt, u8_t row, u8_t col);

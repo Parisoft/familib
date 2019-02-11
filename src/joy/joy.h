@@ -1,5 +1,13 @@
 #include "../def/def.h"
 
+#ifndef __FAMIJOY__
+#define __FAMIJOY__
+typedef struct {
+    u8_t curr;  // current state
+    u8_t prev;  // previous state
+} joy_t;
+#endif
+
 #define BUTTON_A (1 << 7)
 #define BUTTON_B (1 << 6)
 #define BUTTON_SELECT (1 << 5)

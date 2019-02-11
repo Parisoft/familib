@@ -1,7 +1,7 @@
+    .include "joy.inc"
+
     .importzp _joy1 
     .export _joy1_poll 
-
-JOYPAD1 = $4016
 
 .proc _joy1_poll 
     lda _joy1+0 

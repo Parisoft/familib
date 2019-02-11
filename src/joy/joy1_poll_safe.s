@@ -1,9 +1,9 @@
+    .include "joy.inc"
+
     .importzp _joy1 
     .export _joy1_poll_safe 
 
-JOYPAD1 = $4016
-
-.proc joy1poll 
+.proc joy1poll
     lda #1
     sta _joy1 
     sta JOYPAD1 

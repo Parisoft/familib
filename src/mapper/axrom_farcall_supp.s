@@ -1,17 +1,19 @@
-    .import _axrom_banktable 
+    .include "axrom.inc"
+    
     .importzp _axrom, ptr4, tmp1, tmp2, tmp4 
+    .import _axrom_banktable 
     .export _axrom_farcall_supp 
 
     .proc _axrom_farcall_supp 
     ; preserve axrom state
-    lda _axrom 
+    lda axrom_bank 
     cmp tmp4 
     beq @callsup
     pha 
     ; bank switch
     lda tmp4 
     tax 
-    sta _axrom 
+    sta axrom_bank 
     sta _axrom_banktable, x
     ; call func
     jsr @callsup 
@@ -21,7 +23,7 @@
     ; restore axrom state
     pla 
     tax 
-    sta _axrom 
+    sta axrom_bank 
     sta _axrom_banktable, x
     ; restore A/X return value
     lda tmp1 

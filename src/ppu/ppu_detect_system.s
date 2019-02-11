@@ -1,12 +1,10 @@
+    .include "ppu.inc"
+
     .importzp _ppu 
     .export _ppu_detect_system 
     
-    .include "ppu.inc"
-
-ppusys = _ppu+4 
-
-; void ppu_detect_system();
-.proc _ppu_detect_system 
+    ; void ppu_detect_system();
+    .proc _ppu_detect_system 
     bit PPUSTATUS 
 @waitvblank:
     bit PPUSTATUS 
@@ -20,6 +18,6 @@ ppusys = _ppu+4
     bne @count
     lda PPUSTATUS 
     and #$80
-    sta ppusys 
+    sta ppu_system 
     rts 
-.endproc
+    .endproc

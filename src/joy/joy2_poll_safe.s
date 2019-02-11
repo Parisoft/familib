@@ -1,8 +1,7 @@
+    .include "joy.inc"
+    
     .importzp _joy2 
     .export _joy2_poll_safe 
-
-JOYPAD1 = $4016
-JOYPAD2 = $4017
 
 .proc joy2poll 
     lda #1

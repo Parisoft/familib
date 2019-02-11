@@ -3,7 +3,9 @@
         "title.h": "c",
         "familib.h": "c",
         "joy.h": "c",
-        "ppu.h": "c"
+        "ppu.h": "c",
+        "vram.h": "c",
+        "def.h": "c"
     },
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.enablePreview": false

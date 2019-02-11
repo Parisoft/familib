@@ -1,4 +1,4 @@
-#include "../def/def.h"
+#include "def.h"
 
 // prepare a sound file fot further play
 // the system region is autodetected (ppu_detect_region() must be called prior this function)

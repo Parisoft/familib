@@ -13,7 +13,13 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [
+                "$ca65",
+                "$ld65",
+                "$ld65-config",
+                "$ld65-unresolved"
+            ]
         }
     ]
 }

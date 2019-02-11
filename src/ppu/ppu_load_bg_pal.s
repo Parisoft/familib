@@ -1,10 +1,10 @@
+    .include "ppu.inc"
+
     .importzp ppuptr1 
     .export _ppu_load_bg_pal 
 
-    .include "ppu.inc"
-
-; void __fastcall__ ppu_load_bg_pal(const u8 *data);
-.proc _ppu_load_bg_pal 
+	; void __fastcall__ ppu_load_bg_pal(const u8 *data);
+	.proc _ppu_load_bg_pal 
     sta ppuptr1+0 
     stx ppuptr1+1 
 	lda #>$3F00         
@@ -19,4 +19,4 @@
     cpy #16           
 	bne @loop           
 	rts 
-.endproc
+	.endproc
