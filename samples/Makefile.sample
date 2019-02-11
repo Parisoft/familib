@@ -1,24 +1,25 @@
-VERSION = 2.17.1
-SRCLIB = /usr/share/cc65/lib/nes.lib
-TGTLIB = lib/runtime.lib
+ROMNAME = pong.nes
+BOARD = nrom-256
+
 SRCDIR = src
-CFGDIR = cfg
-INCDIR = include
-ASMDIR = asminc
 OBJDIR = obj
-SAMPLE = samples
+EMUEXE = nes
+EMUOPT =
+LIB = $(SRCDIR)/familib/runtime.lib
+CC = cc65
 CA = ca65
-AR = ar65
+LD = ld65
+CFLAGS = -Oi --add-source
 
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
+CRT0 = $(strip $(call rwildcard, $(SRCDIR), */$(BOARD).inc))
+CFG = $(CRT0:.inc=.cfg)
 CSOURCES = $(call rwildcard, $(SRCDIR), *.c)
 SSOURCES = $(call rwildcard, $(SRCDIR), *.s)
 DEPS := $(CSOURCES:.c=.d)
 DEPS := $(DEPS:$(SRCDIR)/%=$(OBJDIR)/%)
 OBJS := $(CRT0:.inc=.o) $(SSOURCES:.s=.o) $(CSOURCES:.c=.o)
 OBJS := $(OBJS:$(SRCDIR)/%=$(OBJDIR)/%)
-ARCHIVE := familib-$(VERSION).zip
-AFLAGS := -I $(ASMDIR)
 
 ifeq ($(shell echo),)
 	MKDIR = mkdir -p $1
@@ -30,23 +31,28 @@ ifneq ($(MAKECMDGOALS),clean)
 -include $(DEPS)
 endif
 
-$(TGTLIB): $(OBJS)
-	cp $(SRCLIB) $@
-	$(AR) a $@ $^
+$(ROMNAME): $(CFG) $(CRT0) $(SSOURCES) $(OBJS) 
+	$(LD) -C $(CFG) -m $(@:.nes=.m) -o $@ $(OBJS) $(LIB)
 
-$(ARCHIVE): $(TGTLIB)
-	zip -r $(ARCHIVE) $(TGTLIB) $(CFGDIR) $(ASMDIR) $(INCDIR) $(SAMPLE)
+all: clean play
 
-all: clean $(ARCHIVE)
-	$(info Done)
+play: $(ROMNAME)
+	$(EMUEXE) $(EMUOPT) $(ROMNAME)
 
 .SECONDEXPANSION:
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.s | $$(@D)/.
-	$(CA) $(AFLAGS) $< -o $@
+$(OBJDIR)/%.o: $(OBJDIR)/%.s | $$(@D)/.
+	$(CA) $< -o $@
+	$(RM) $<
 
-$(OBJDIR)/%.o: $(ASMDIR)/%.inc | $$(@D)/.
-	$(CA) $(AFLAGS) $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.s | $$(@D)/.
+	$(CA) $< -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.inc | $$(@D)/.
+	$(CA) $< -o $@
+
+$(OBJDIR)/%.s: $(SRCDIR)/%.c | $$(@D)/.
+	$(CC) $(CFLAGS) -o $@ --create-dep $(@:.s=.d) $<
 
 .PRECIOUS: $(OBJDIR)/. $(OBJDIR)%/.
 
@@ -59,4 +65,4 @@ $(OBJDIR)%/.:
 .PHONY: clean
 
 clean:
-	$(RM) $(OBJS) $(DEPS) $(TGTLIB) $(ARCHIVE)
+	$(RM) $(OBJS) $(DEPS) $(ROMNAME)

@@ -1,14 +1,3 @@
-#include "cpu/cpu.h"
-#include "def/def.h"
-#include "ft2/ft2.h"
-#include "joy/joy.h"
-#include "mapper/axrom.h"
-#include "mapper/mmc3.h"
-#include "mapper/uxrom.h"
-#include "oam/oam.h"
-#include "ppu/ppu.h"
-#include "vram/vram.h"
-
 //-----------------
 // Segment pragmas
 //-----------------

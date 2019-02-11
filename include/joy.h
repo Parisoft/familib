@@ -1,4 +1,4 @@
-#include "../def/def.h"
+#include "def.h"
 
 #ifndef __FAMIJOY__
 #define __FAMIJOY__

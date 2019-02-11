@@ -1,0 +1,6 @@
+    .include "axrom.inc"
+    .include "joy.inc"
+    .include "mmc3.inc"
+    .include "oam.inc"
+    .include "ppu.inc"
+    .include "uxrom.inc"
