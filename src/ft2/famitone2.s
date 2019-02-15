@@ -1272,7 +1272,7 @@ _FT2NoteTableMSB:
 	
 	.segment "CODE" 
 
-region = _ppu+4 
+	.include "ppu.inc"
 
 	; void __fastcall__ ft2_init(const u8 *data);
 	.proc _ft2_init 
@@ -1281,7 +1281,7 @@ region = _ppu+4
 	tay		; Y = >data
 	pla 
 	tax 	; X = <data
-	lda region 
+	lda ppu_system 
 	jmp FamiToneInit 
 	.endproc
 
