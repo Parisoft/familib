@@ -8,6 +8,6 @@
     nes2prg     2 * 32 * 1024
     nes2chr     0 * 08 * 1024
     nes2chrram  8 * 1024
-    nes2mirror  '4'
+    nes2mirror  218
     nes2tv      'N', 'P'
     nes2end 

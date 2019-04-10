@@ -6,6 +6,13 @@
 	.define PPUDATA   	$2007
 	.define SCREEN_ROWS 30
 	.define SCREEN_COLS 32
+	.define SCREEN_WIDTH_TILES 32
+	.define SCREEN_HEIGHT_TILES 30
+	.define NAME_TABLE_TOP_LEFT $2000
+	.define NAME_TABLE_TOP_RIGHT $2400
+	.define NAME_TABLE_BOTTOM_LEFT $2800
+	.define NAME_TABLE_BOTTOM_RIGHT $2C00
+
 
 	.struct scroll_t
 	xoff	.res 1
