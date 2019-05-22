@@ -2,6 +2,7 @@
 	
 	.define PPUCTRL   	$2000
 	.define PPUSTATUS 	$2002
+	.define PPUSCROLL	$2005
 	.define PPUADDR   	$2006
 	.define PPUDATA   	$2007
 	.define SCREEN_ROWS 30
