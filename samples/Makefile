@@ -5,18 +5,19 @@ FAMILIB_DIR = ../familib
 FAMILIB_INC = $(FAMILIB_DIR)/include
 FAMILIB_ASM = $(FAMILIB_DIR)/asminc
 FAMILIB_CFG = $(FAMILIB_DIR)/cfg
-FAMILIB_LIB = $(FAMILIB_DIR)/lib/
+FAMILIB_LIB = $(FAMILIB_DIR)/lib
 SRCDIR = src
 OBJDIR = obj
 EMUEXE = mesen
 EMUOPT = 2>/dev/null
 MAP = $(ROMNAME:.nes=.m)
+DBG = $(ROMNAME:.nes=.dbg)
 LIB = $(FAMILIB_LIB)/runtime.lib
 CC = cc65
 CA = ca65
 LD = ld65
-CFLAGS = -t nes -Oirs -T -I $(FAMILIB_INC)
-AFLAGS = -I $(FAMILIB_ASM)
+CFLAGS = -t nes -Oirs -T -I $(FAMILIB_INC) -g
+AFLAGS = -I $(FAMILIB_ASM) -g
 
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
 CSOURCES = $(call rwildcard, $(SRCDIR), *.c)
@@ -46,7 +47,7 @@ $(ROMNAME): $(BINS)
 	$(RM) $(BINS)
 
 %.bin: $(CFGS) $(CRT0) $(SSOURCES) $(OBJS) 
-	$(LD) -C $(FAMILIB_CFG)/$(@:.bin=.cfg) -m $(MAP) -o $@ $(OBJS) $(LIB)
+	$(LD) -C $(FAMILIB_CFG)/$(@:.bin=.cfg) --dbgfile $(DBG) -m $(MAP) -o $@ $(OBJS) $(LIB)
 
 all: clean play
 
@@ -78,4 +79,4 @@ $(OBJDIR)%/.:
 .PHONY: clean
 
 clean:
-	$(RM) $(OBJS) $(OBJS:.o=.s) $(MAP) $(DEPS) $(BINS) $(ROMNAME)
+	$(RM) $(OBJS) $(OBJS:.o=.s) $(DBG) $(MAP) $(DEPS) $(BINS) $(ROMNAME)
