@@ -62,7 +62,7 @@ $(OBJDIR)/%.o: $(OBJDIR)/%.s | $$(@D)/.
 $(OBJDIR)/%.o: $(SRCDIR)/%.s | $$(@D)/.
 	$(CA) $(AFLAGS) $< -o $@
 
-$(OBJDIR)/$(BOARD).o: $(FAMILIB_ASM)/$(BOARD).inc | $$(@D)/.
+$(OBJDIR)/$(BOARD).o: $(CRT0) | $$(@D)/.
 	$(CA) $(AFLAGS) $< -o $@
 
 $(OBJDIR)/%.s: $(SRCDIR)/%.c | $$(@D)/.
