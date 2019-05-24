@@ -12,6 +12,7 @@
     .out " "
 
     .import _main, _nmi, _irq 
+    .export reset
     .export __STARTUP__:absolute=1
 
     .define PPUCTRL     $2000
