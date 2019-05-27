@@ -1,6 +1,7 @@
 	.importzp _ppu 
 	.import popa 
 	.export _ft2_init, _ft2_init_ntsc, _ft2_init_palm, _ft2_init_sfx, _ft2_play_music, _ft2_stop_music, _ft2_pause_music, _ft2_play_sfx, _ft2_play_sample, _ft2_update 
+	.export FamiToneInit, FamiToneSfxInit, FamiToneMusicPlay, FamiToneMusicStop, FamiToneMusicPause, FamiToneSfxInit, FamiToneSfxPlay, FamiToneSamplePlay, FamiToneSampleStop, FamiToneUpdate
 
 	.segment "ZEROPAGE"
 
