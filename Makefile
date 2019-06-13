@@ -1,4 +1,4 @@
-VERSION = 2.17.1
+VERSION = 2.18.1
 SRCLIB = /usr/share/cc65/lib/nes.lib
 TGTLIB = lib/runtime.lib
 SRCDIR = src

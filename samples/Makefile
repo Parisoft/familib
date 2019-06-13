@@ -1,13 +1,15 @@
 ROMNAME = mygame.nes
 BOARD = nrom
 
-FAMILIB_DIR = ../familib
+PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+PROJECT_DIR := $(PROJECT_DIR:/=)
+FAMILIB_DIR = $(PROJECT_DIR)/../familib
 FAMILIB_INC = $(FAMILIB_DIR)/include
 FAMILIB_ASM = $(FAMILIB_DIR)/asminc
 FAMILIB_CFG = $(FAMILIB_DIR)/cfg
 FAMILIB_LIB = $(FAMILIB_DIR)/lib
-SRCDIR = src
-OBJDIR = obj
+SRCDIR = $(PROJECT_DIR)/src
+OBJDIR = $(PROJECT_DIR)/obj
 EMUEXE = mesen
 EMUOPT = 2>/dev/null
 MAP = $(ROMNAME:.nes=.m)
