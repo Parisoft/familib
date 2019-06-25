@@ -1,12 +1,14 @@
 VERSION = 2.18.1
+PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+PROJECT_DIR := $(PROJECT_DIR:/=)
 SRCLIB = /usr/share/cc65/lib/nes.lib
-TGTLIB = lib/runtime.lib
-SRCDIR = src
-CFGDIR = cfg
-INCDIR = include
-ASMDIR = asminc
-OBJDIR = obj
-SAMPLE = samples
+TGTLIB = $(PROJECT_DIR)/lib/runtime.lib
+SRCDIR = $(PROJECT_DIR)/src
+CFGDIR = $(PROJECT_DIR)/cfg
+INCDIR = $(PROJECT_DIR)/include
+ASMDIR = $(PROJECT_DIR)/asminc
+OBJDIR = $(PROJECT_DIR)/obj
+SAMPLE = $(PROJECT_DIR)/samples
 CA = ca65
 AR = ar65
 
