@@ -4,7 +4,7 @@
 
     .segment "CODE"
 
-ft_play_sfx = FamiToneSfxPlay
+ft2_play_sfx = FamiToneSfxPlay
 
     .if(FT_SFX_ENABLE)
 
