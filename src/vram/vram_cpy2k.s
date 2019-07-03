@@ -1,12 +1,11 @@
-    .importzp ptr1 
-    .export _vram_cp1k 
-    
-    .segment "CODE"
+    .include "vram.inc"    
 
-    .proc _vram_cp1k 
+vram_cpy2k = _vram_cpy2k
+
+    .proc _vram_cpy2k 
     sta ptr1+0 
     stx ptr1+1 
-    ldx #4
+    ldx #8
     ldy #0
 @copy:
     lda (ptr1), y

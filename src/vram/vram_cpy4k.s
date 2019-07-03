@@ -1,9 +1,9 @@
-    .importzp ptr1 
-    .export _vram_cp4k 
-    
-    .segment "CODE"
-    
-    .proc _vram_cp4k 
+    .include "vram.inc"
+    .include "vram.inc"
+
+vram_cpy4k = _vram_cpy4k
+
+    .proc _vram_cpy4k 
     sta ptr1+0 
     stx ptr1+1 
     ldx #16

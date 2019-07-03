@@ -1,6 +1,7 @@
+    .include "vram.inc"
     .include "ppu.inc"
-    
-    .export _vram_addr 
+
+vram_addr = _vram_addr    
 
     ; void __fastcall__ vram_addr(u16_t addr);
     .proc _vram_addr 
