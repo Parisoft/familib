@@ -12,6 +12,6 @@
 	tay		; Y = >data
 	pla 
 	tax 	; X = <data
-	lda ppu_system 
+	lda ppu::system 
 	jmp FamiToneInit 
 	.endproc

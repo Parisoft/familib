@@ -18,6 +18,6 @@
     bne @count
     lda PPUSTATUS 
     and #$80
-    sta ppu_system 
+    sta ppu::system 
     rts 
     .endproc
