@@ -6,14 +6,14 @@ joy_poll_safe = _joy_poll_safe
     .proc _joy_poll_safe
     tax 
     lda joy::curr, x 
-    pha             ; preserve current state
-    jsr joypoll 
-    tay             ; Y = poll1   
-    jsr joypoll 
-    sta joy::prev, x   ; joy::prev = poll2
-    jsr joypoll 
-    pha             ; preserve poll3
-    jsr joypoll     ; A and joy::curr = poll4   
+    pha                  ; preserve current state
+    jsr joypoll  
+    tay                  ; Y = poll1   
+    jsr joypoll  
+    sta joy::prev, x     ; joy::prev = poll2
+    jsr joypoll  
+    pha                  ; preserve poll3
+    jsr joypoll          ; A and joy::curr = poll4   
     cmp joy::prev, x     ; poll4 == poll2 ?   
     beq @done
     tya
@@ -36,11 +36,11 @@ joy_poll_safe = _joy_poll_safe
     .proc joypoll
     lda #1
     sta joy::curr, x 
-    sta JOYPAD1 
+    sta JOYPAD1, x 
     lsr a
-    sta JOYPAD1  
+    sta JOYPAD1, x
 @loop:       
-	lda JOYPAD1 
+	lda JOYPAD1, x
     and #3
     cmp #1
     rol joy::curr, x 
