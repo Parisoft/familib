@@ -1,4 +1,4 @@
-VERSION = 2.18.1
+VERSION = 2.18.2
 PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 PROJECT_DIR := $(PROJECT_DIR:/=)
 SRCLIB = /usr/share/cc65/lib/nes.lib
