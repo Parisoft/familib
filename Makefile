@@ -37,7 +37,7 @@ $(TGTLIB): $(OBJS)
 	$(AR) a $@ $^
 
 $(ARCHIVE): $(TGTLIB)
-	zip -r $(ARCHIVE) $(TGTLIB) $(CFGDIR) $(ASMDIR) $(INCDIR) $(SAMPLE)
+	zip -r $(ARCHIVE) $(TGTLIB:$(PROJECT_DIR)/%=%) $(CFGDIR:$(PROJECT_DIR)/%=%) $(ASMDIR:$(PROJECT_DIR)/%=%) $(INCDIR:$(PROJECT_DIR)/%=%) $(SAMPLE:$(PROJECT_DIR)/%=%)
 
 all: clean $(ARCHIVE)
 	$(info Done)
