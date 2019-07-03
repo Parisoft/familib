@@ -1,6 +1,6 @@
     .include "oam.inc"
 
-    .export _oam_hide_sp_from 
+oam_hide_sp_from = _oam_hide_sp_from
 
     ; void __fastcall__ oam_hide_sp_from(u8 num);
     .proc _oam_hide_sp_from

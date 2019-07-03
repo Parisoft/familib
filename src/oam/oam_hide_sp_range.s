@@ -1,7 +1,6 @@
     .include "oam.inc"
 
-    .importzp sp, oamtmp3 
-    .export _oam_hide_sp_range 
+oam_hide_sp_range = _oam_hide_sp_range
 
     ; void __fastcall__ oam_hide_sp_range(u8 from, u8 to);
     .proc _oam_hide_sp_range
