@@ -3,8 +3,8 @@
 #ifndef __FAMIJOY__
 #define __FAMIJOY__
 typedef struct {
-    u8_t curr;  // current state
-    u8_t prev;  // previous state
+    u8_t curr[4];  // current state
+    u8_t prev[4];  // previous state
 } joy_t;
 #endif
 
@@ -17,23 +17,16 @@ typedef struct {
 #define PAD_LEFT (1 << 1)
 #define PAD_RIGHT (1 << 0)
 
-extern joy_t joy1;
+#define JOYPAD1 *((u8_t *)0x4016)
+#define JOYPAD2 *((u8_t *)0x4017)
+
+extern joy_t joy;
 #pragma zpsym("joy1")
-extern joy_t joy2;
-#pragma zpsym("joy2")
 
-void joy1_poll(void);
+void __fastcall__ joy_poll(u8_t);
 
-void joy2_poll(void);
+void __fastcall__ joy_poll_safe(u8_t);
 
-void joy1_poll_safe(void);
+#define joy_pressing(idx, btn) (joy.curr[idx] & (btn))
 
-void joy2_poll_safe(void);
-
-#define joy1_pressing(btn) (joy1.curr & (btn))
-
-#define joy1_pressed(btn) (joy1.prev & (btn))
-
-#define joy2_pressing(btn) (joy2.curr & (btn))
-
-#define joy2_pressed(btn) (joy2.prev & (btn))
+#define joy_pressed(idx, btn) (joy.prev[idx] & (btn))
