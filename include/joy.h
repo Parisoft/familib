@@ -21,7 +21,7 @@ typedef struct {
 #define JOYPAD2 *((u8_t *)0x4017)
 
 extern joy_t joy;
-#pragma zpsym("joy")
+#pragma zpsym("joy");
 
 void __fastcall__ joy_poll(u8_t);
 

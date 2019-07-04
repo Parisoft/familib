@@ -71,6 +71,8 @@ typedef struct {
 extern ppu_t ppu;
 #pragma zpsym("ppu");
 
+#define ppu_set_nam(addr) (ppu.ctrl = (ppu.ctrl & 0xfc) | ((addr - 0x2000) / 0x400))
+
 #define ppu_set_nam_top_left() (ppu.ctrl &= 0xFC)
 
 #define ppu_set_nam_top_right() (ppu.ctrl = (ppu.ctrl & 0xFC) | 0x01)
@@ -79,9 +81,13 @@ extern ppu_t ppu;
 
 #define ppu_set_nam_bot_right() (ppu.ctrl |= 0x03)
 
-#define ppu_set_vram_inc_by_1() (ppu.ctrl &= 0xFB)
+#define ppu_set_addr(addr)   \
+    PPUADDR = ((addr) >> 8); \
+    PPUADDR = ((addr)&0xff);
 
-#define ppu_set_vram_inc_by_32() (ppu.ctrl |= 0x04)
+#define ppu_set_addr_inc_by_1() (ppu.ctrl &= 0xFB)
+
+#define ppu_set_addr_inc_by_32() (ppu.ctrl |= 0x04)
 
 #define ppu_set_sp_at_left_pattern_table() (ppu.ctrl &= 0xF7)
 
