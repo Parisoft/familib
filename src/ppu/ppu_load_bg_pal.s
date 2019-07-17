@@ -3,6 +3,8 @@
     .importzp ppuptr1 
     .export _ppu_load_bg_pal 
 
+ppu_load_bg_pal = _ppu_load_bg_pal
+
 	; void __fastcall__ ppu_load_bg_pal(const u8 *data);
 	.proc _ppu_load_bg_pal 
     sta ppuptr1+0 
