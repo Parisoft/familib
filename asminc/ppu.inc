@@ -100,6 +100,12 @@
 	; PPUDATA register
 	.define PPUDATA $2007
 
+	.macro ppu_set_nam addr
+	lda ppu::ctrl
+	and #$fc
+	ora #(((addr) - $2000) / $400)
+	.endmac
+
 	.macro ppu_set_nam_top_left
 	lda ppu::ctrl
 	and #$fc
@@ -124,6 +130,13 @@
 	lda ppu::ctrl
 	ora #3
 	sta ppu::ctrl
+	.endmac
+
+	.macro ppu_set_addr addr
+	lda #>(addr)
+	sta PPUADDR
+	lda #<(addr)
+	sta PPUADDR
 	.endmac
 
 	.macro ppu_set_vram_inc_by_1
