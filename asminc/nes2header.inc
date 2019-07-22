@@ -167,6 +167,12 @@ _nes2_chrsizehi = >sz1
 .endmacro
 
 ;;
+; Set battery_bit for UNROM-512 and GTROM
+.macro nes2flashable
+_nes2_flashable = 1
+.endmacro
+
+;;
 ; Writes the header configured by previous nes2 macros.
 .macro nes2end
 .local battery_bit
@@ -196,7 +202,7 @@ _nes2_chrsizehi = >sz1
   .ifndef _nes2_tvsystem
     nes2tv 'N'
   .endif
-  .if _nes2_bramsize .or _nes2_chrbramsize
+  .if _nes2_bramsize .or _nes2_chrbramsize .or .defined(_nes2_flashable)
     battery_bit = $02
   .else
     battery_bit = $00
