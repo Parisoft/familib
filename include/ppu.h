@@ -68,6 +68,10 @@ typedef struct {
 // PPUDATA register
 #define PPUDATA *((u8_t *)0x2007)
 
+#define PALBG *((u8_t *)0x3f00)
+
+#define PALSP *((u8_t *)0x3f10)
+
 extern ppu_t ppu;
 #pragma zpsym("ppu");
 

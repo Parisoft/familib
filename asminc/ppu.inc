@@ -100,6 +100,12 @@
 	; PPUDATA register
 	.define PPUDATA $2007
 
+	; BG PAL register
+	.define PALBG $3f00
+
+	; SP PAL register
+	.define PALSP $3f10
+
 	.macro ppu_set_nam addr
 	lda ppu::ctrl
 	and #$fc
