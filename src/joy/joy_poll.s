@@ -9,9 +9,9 @@ joy_poll = _joy_poll
     sta joy::prev, x ; prev = curr
     lda #1
     sta joy::curr, x
-    sta JOYPAD1, x
+    sta JOYPAD1
     lsr a 
-    sta JOYPAD1, x
+    sta JOYPAD1
 @loop:       
     lda JOYPAD1, x
     and #3
