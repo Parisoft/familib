@@ -1,7 +1,6 @@
     .include "ppu.inc"
 
-    .importzp ppuptr1 
-    .export _ppu_load_sp_pal 
+ppu_load_sp_pal = _ppu_load_sp_pal
 
 	; void __fastcall__ ppu_load_sp_pal(const u8 *data);
 	.proc _ppu_load_sp_pal 
